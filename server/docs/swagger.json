@@ -1,0 +1,158 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "REST endpoint documentation of Qutation service APIs",
+        "version": "1.0.0",
+        "title": "Quote Service API",
+        "contact": {
+            "email": "abc@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "schemes": [
+        "http"
+    ],
+    "host": "localhost:3030",
+    "basePath": "/",
+    "paths": {
+        "/quote/list": {
+            "get": {
+                "summary": "Get all the quotations",
+                "description": "Get all the quotations",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Successful returns list of quotation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/getQuatationsResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/quote/create": {
+            "post": {
+                "summary": "Create new quotation",
+                "description": "Create new quotation",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Request object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "String",
+                                    "$ref": "#/definitions/name"
+                                },
+                                "mail": {
+                                    "type": "String",
+                                    "$ref": "#/definitions/mail"
+                                },
+                                "contact": {
+                                    "type": "String",
+                                    "$ref": "#/definitions/contact"
+                                },
+                                "memo": {
+                                    "type": "String",
+                                    "$ref": "#/definitions/memo"
+                                },
+                                "file": {
+                                    "type": "File",
+                                    "$ref": "#/definitions/file"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Quotation placed successfully.",
+                        "schema": {
+                            "type": "string",
+                            "$ref": "#/definitions/createQuotationResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "getQuatationsResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "mail": {
+                    "type": "string"
+                },
+                "contact": {
+                    "type": "string"
+                },
+                "memo": {
+                    "type": "string"
+                },
+                "file_path": {
+                    "type": "string"
+                },
+                "file_mimetype": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "createQuotationResponse": {
+            "type": "string",
+            "value": "Quotation placed successfully."
+        },
+        "InvalidResponse": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
