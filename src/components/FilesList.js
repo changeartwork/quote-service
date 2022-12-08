@@ -10,7 +10,7 @@ const FilesList = () => {
   useEffect(() => {
     const getFilesList = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/quote`);
+        const { data } = await axios.get(`${API_URL}/quote/list`);
         setErrorMsg('');
         setFilesList(data);
       } catch (error) {

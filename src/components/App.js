@@ -58,7 +58,7 @@ const App = (props) => {
           formData.append('memo', memo);
 
           setErrorMsg('');
-          await axios.post(`${API_URL}/quote`, formData, {
+          await axios.post(`${API_URL}/quote/create`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             }

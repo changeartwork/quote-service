@@ -29,7 +29,7 @@ const upload = multer({
 });
 
 Router.post(
-  '/quote',
+  '/quote/create',
   upload.single('file'),
   async (req, res) => {
     try {
@@ -56,7 +56,7 @@ Router.post(
   }
 );
 
-Router.get('/quote', async (req, res) => {
+Router.get('/quote/list', async (req, res) => {
   try {
     const files = await Quote.find({});
     const sortedByCreationDate = files.sort(
