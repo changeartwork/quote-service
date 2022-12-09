@@ -1,1 +1,2 @@
-# 'quote-service' - A microservice for creating and listing the quotations.
+# quote-service
+Microservice for creating and listing the quotations.

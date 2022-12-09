@@ -44,7 +44,7 @@ Router.post(
         file_mimetype: mimetype
       });
       await file.save();
-      res.send('Quotation placed successfully.');
+      res.send(file);
     } catch (error) {
       res.status(400).send('Error while placing quote. Try again later.');
     }
@@ -68,7 +68,7 @@ Router.get('/quote/list', async (req, res) => {
   }
 });
 
-Router.get('/quote/:id', async (req, res) => {
+Router.get('/quote/download/:id', async (req, res) => {
   try {
     const file = await Quote.findById(req.params.id);
     res.set({
