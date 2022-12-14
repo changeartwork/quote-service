@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-
-mongoose.connect('mongodb://0.0.0.0:27017/changeartworkdb', {
+mongoose.connect(`${process.env.MONGO_SERVER}:${process.env.MONGO_PORT}/${process.env.MONGO_DB}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
