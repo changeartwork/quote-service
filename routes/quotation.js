@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const multer = require('multer');
 const Quote = require('../model/quotation');
+const auth = require("../middleware/auth");
 const {s3upload, s3download} = require("../service/s3service");
 const Router = express.Router();
 
@@ -39,7 +40,6 @@ Router.post(
       });
       await quote.save();
       const s3response = await s3upload(req.files);
-      console.log(s3response);
       s3response.map(async (data)=>{
         var s3details = {url: data.Location, name: data.key};
         quote.files.push(s3details);
@@ -57,7 +57,7 @@ Router.post(
   }
 );
 
-Router.get('/list', async (req, res) => {
+Router.get('/list', auth, async (req, res) => {
   try {
     const isFilter = (req.query.id == null) ? false : true;
     const files = isFilter  ? await Quote.find({_id:req.query.id}) : await Quote.find({}); 

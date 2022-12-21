@@ -12,6 +12,13 @@
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         }
     },
+    "securityDefinitions": {
+        "JWT": {
+            "type": "apiKey",
+            "in": "header",
+            "name": "Authorization"
+        }
+    },
     "schemes": [
         "http"
     ],
@@ -22,6 +29,7 @@
             "get": {
                 "summary": "Get all the quotations details",
                 "description": "Get all the quotations details",
+                "JWT":[],
                 "produces": [
                     "application/json"
                 ],
