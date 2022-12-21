@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
 
-const fileSchema = mongoose.Schema(
+const quoteSchema = mongoose.Schema(
   {
     name: {
       type: String,
       required: true,
-      trim: true
     },
     mail: {
       type: String,
@@ -15,24 +14,36 @@ const fileSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    status: {
+      type: String,
+      enum: ['NEW','INPROGRESS','ONHOLD','COMPLETED'],
+      default: 'NEW'
+    },
+    service_type: {
+      type: String,
+      enum: ['VECTOR_ART_WORK','DIGITIZING'],
+      required: true,
+    },
     memo: {
       type: String,
       required: true,
     },
-    file_path: {
-      type: String,
-      required: true
-    },
-    file_mimetype: {
-      type: String,
-      required: true
+    files: [{
+      url: {
+        type: String,
+        required: false
+      },
+      name: {
+        type: String,
+        required: false
+      }
     }
+    ]
   },
   {
     timestamps: true
   }
 );
 
-const Quotation = mongoose.model('Quotation', fileSchema);
-
+const Quotation = mongoose.model('Quotation', quoteSchema);
 module.exports = Quotation;
