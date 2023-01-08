@@ -59,8 +59,8 @@ Router.post(
 
 Router.get('/list', auth, async (req, res) => {
   try {
-    const isFilter = (req.query.id == null) ? false : true;
-    const files = isFilter  ? await Quote.find({_id:req.query.id}) : await Quote.find({}); 
+    const isFilter = (req.query.email == null) ? false : true;
+    const files = isFilter  ? await Quote.find({mail:req.query.email}) : await Quote.find({}); 
     const sortedByCreationDate = isFilter ? files : files.sort(
       (a, b) => b.createdAt - a.createdAt
     );
